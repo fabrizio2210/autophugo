@@ -301,7 +301,7 @@ body.loading #main .thumb { -moz-pointer-events: none; -webkit-pointer-events: n
   #main .thumb > h2 { font-size: 1.2em; }
   #main .text-item > h1 { font-size: 1.0em; }
   #main .text-item > h2 { font-size: 0.8em; }
-  #main .text-item > h3 { font-size: 0.6em; }
+  #main .text-item > h3 { font-size: 0.6em; }}
 
 /* Footer */
 #footer .copyright { color: #505051; font-size: 0.9em; }
@@ -328,3 +328,4 @@ body.loading #main .thumb { -moz-pointer-events: none; -webkit-pointer-events: n
 .mfp-bottom-bar .download-button a:hover, .mfp-figure .mfp-close:hover { opacity: 1; }
 
 article.thumb a:focus img { border: solid 1px #ffffff; }
+
