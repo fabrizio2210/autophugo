@@ -29,8 +29,9 @@
     {{- end }}
     {{- $texts := $.Scratch.Get "texts" }}
 
-    {{- /* Build the list of sections and thumbnails */}}
+    {{- /* Build the list of sections, links and thumbnails */}}
     {{- $.Scratch.Set "sections" (slice) }}
+    {{- $.Scratch.Set "links" (slice) }}
     {{- range .Sections.ByDate }}
         {{- $title := .Title }}
         {{- $link := .Permalink }}
@@ -62,9 +63,9 @@
             {{- $thumb := $image.Resize $thumb_size }}
             {{- $new_sect := dict "type" "sect" "title" $title "link" $link "thumb" $thumb }}
 
-            {{- $sections := $.Scratch.Get "sections" }}
-            {{- $sections := $sections | append $new_sect }}
-            {{- $.Scratch.Set "sections" $sections }}
+            {{- $links := $.Scratch.Get "links" }}
+            {{- $links := $links | append $new_sect }}
+            {{- $.Scratch.Set "links" $links }}
         {{- end }}
     {{- end }}
     {{- $sections := $.Scratch.Get "sections" }}
@@ -118,9 +119,11 @@
     {{- end }}
 
 
-    {{- /* Add the sections into the columns followed by images */}}
-    {{- if $images }} {{- $sections = $sections | append $images }} {{- end }}
+    {{- /* Add the texts into the columns followed by links and images */}}
+    {{- $links := $.Scratch.Get "links" }}
     {{- if $texts }} {{- $sections = $sections | append $texts }} {{- end }}
+    {{- if $links }} {{- $sections = $sections | append $links }} {{- end }}
+    {{- if $images }} {{- $sections = $sections | append $images }} {{- end }}
     {{- /*range $elem_index, $elem_val := ($sections | append $images | append $texts) */}}
     {{- range $elem_index, $elem_val := $sections }}
         {{- /* Find the least-filled column */}}
