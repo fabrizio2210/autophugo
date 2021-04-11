@@ -274,7 +274,7 @@ body.loading #header { -moz-transform: translateY(4em); -webkit-transform: trans
 #main .text-item > h1 { font-size: 1.4em; left: 2.1875em; margin: 0; z-index: 1; }
 #main .text-item > h2 { font-size: 1.0em; left: 2.1875em; margin: 0; z-index: 1; }
 #main .text-item > h3 { font-size: 0.8em; left: 2.1875em; margin: 0; z-index: 1; }
-#main .thumb > h2 { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; bottom: 1.875em; font-size: 0.8em; left: 2.1875em; margin: 0; position: absolute; z-index: 1; }
+#main .thumb > h2 { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; bottom: 1.875em; font-size: 2.8em; left: 2.1875em; margin: 0; position: absolute; z-index: 1; }
 #main .thumb > p { display: none; }
 #main:after { -moz-pointer-events: none; -webkit-pointer-events: none; -ms-pointer-events: none; pointer-events: none; -moz-transition: opacity 0.5s ease, visibility 0.5s; -webkit-transition: opacity 0.5s ease, visibility 0.5s; -ms-transition: opacity 0.5s ease, visibility 0.5s; transition: opacity 0.5s ease, visibility 0.5s; background: rgba(36, 38, 41, 0.25); content: ''; display: block; height: 100%; left: 0; opacity: 1; position: absolute; top: 0; visibility: hidden; width: 100%; z-index: 1; }
 body.ie #main:after { background: rgba(36, 38, 41, 0.55); }
@@ -298,6 +298,7 @@ body.loading #main .thumb { -moz-pointer-events: none; -webkit-pointer-events: n
 #main .thumb:nth-child(12) { -moz-transition-delay: 2.3s; -webkit-transition-delay: 2.3s; -ms-transition-delay: 2.3s; transition-delay: 2.3s; }
 
 @media screen and (max-width: 736px) { body { padding: 4em 0 0 0; }
+  #main .thumb > h2 { font-size: 1.2em; }
   #main .text-item > h1 { font-size: 1.0em; }
   #main .text-item > h2 { font-size: 0.8em; }
   #main .text-item > h3 { font-size: 0.6em; }
