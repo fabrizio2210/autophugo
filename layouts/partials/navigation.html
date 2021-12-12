@@ -1,5 +1,8 @@
 	<nav>
 		<ul>
+                {{- if .Site.Params.toggle_nightmode }}
+                        <li><a href="nightmode" class="icon fa-adjust toggle-nightmode"></a></li>
+                {{- end }}
 		{{ range .Site.Params.header.links }}
 			<li><a href="{{ .url }}" class="icon {{ .icon }}">{{ .name }}</a></li>
 		{{ end }}

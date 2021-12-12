@@ -29,3 +29,4 @@
 {{- $mg_pop_css := resources.Get "css/magnific-popup.css" -}}
 {{- $custom_css := slice $font_awesome $google_font $main_css $mg_pop_css | resources.Concat "css/custom.css" | resources.Minify | resources.Fingerprint -}}
 <link rel="stylesheet" href="{{ $custom_css.RelPermalink }}" integrity="{{ $custom_css.Data.Integrity }}"/>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>

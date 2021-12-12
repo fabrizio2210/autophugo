@@ -7,6 +7,35 @@
         small: '(max-width: 736px)',
         xsmall: '(max-width: 480px)'
     });
+    
+
+    $.fn.toggleNightMode = function() {
+        var nightmode = (Cookies.get('nightmode') === "true");
+        nightmode = !nightmode;
+        Cookies.set('nightmode', nightmode);
+        $.fn.applyNightMode();
+        return this;
+    };
+
+    $.fn.applyNightMode = function() {
+        var nightmode = (Cookies.get('nightmode') === "true");
+        if (nightmode) {
+            // restore original css.
+            $('body').removeClass('light-mode');
+            $('.panel').each(function() {
+                $(this).removeClass('light-mode')});
+            $('.thumb').each(function() {
+                $(this).removeClass('light-mode')});
+        } else {
+            // override css with light.
+            $('body').addClass('light-mode');
+            $('.panel').each(function() {
+                $(this).addClass('light-mode')});
+            $('.thumb').each(function() {
+                $(this).addClass('light-mode')});
+        };
+        return this;
+    };
 
     $(function() {
 
@@ -56,6 +85,23 @@
 
         // Fix: Placeholder polyfill.
             $('form').placeholder();
+
+        // Apply nigthmode theme.
+            $.fn.applyNightMode();
+
+        // Toggle nightmode panels.
+            var $toggles_nightmode = $('.toggle-nightmode');
+            $toggles_nightmode.each(function() {
+                var $this = $(this);
+                $this
+                    .removeAttr('href')
+                    .css('cursor', 'pointer')
+                    .on('click', function(event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $.fn.toggleNightMode();
+                        });
+            });
 
         // Panels.
             var $panels = $('.panel');

@@ -163,7 +163,11 @@
         <div class="flexcol">
         {{- range $column }}
 
+            {{- with .title }}
+            <article class="thumb thumbtitle">
+            {{- else }}
             <article class="thumb">
+            {{- end }}
                 {{- if (eq .type "sect") }}
                     <a href="{{ .link }}" class="link" tabindex="0"><img src="{{ .thumb.RelPermalink }}" alt="{{ .title }}" /></a>
                     <h2>{{ .title }}</h2>

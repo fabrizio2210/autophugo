@@ -41,6 +41,7 @@ The `exampleSite` demonstrates the features unique to this theme.  In your site 
 * `full_quality` - display-sized image encoding quality after resizing (default 90%)
 * `column_count` - the number of columns in which to display images (default 2)
 * `images_downloadable` - whether or not the images presents the download button (default true)
+* `toggle_nightmode` - whether or not show the button to switch bewteen light and dark colors (default false)
 
 Additionally, `Author.name` and `Author.email` in the site config will display as the author and webmaster email.
 
