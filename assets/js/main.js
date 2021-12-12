@@ -10,29 +10,29 @@
     
 
     $.fn.toggleNightMode = function() {
-        var nightmode = (Cookies.get('nightmode') === "true");
-        nightmode = !nightmode;
-        Cookies.set('nightmode', nightmode);
+        var lightmode = (Cookies.get('lightmode') === "true");
+        lightmode = !lightmode;
+        Cookies.set('lightmode', lightmode);
         $.fn.applyNightMode();
         return this;
     };
 
     $.fn.applyNightMode = function() {
-        var nightmode = (Cookies.get('nightmode') === "true");
-        if (nightmode) {
-            // restore original css.
-            $('body').removeClass('light-mode');
-            $('.panel').each(function() {
-                $(this).removeClass('light-mode')});
-            $('.thumb').each(function() {
-                $(this).removeClass('light-mode')});
-        } else {
+        var lightmode = (Cookies.get('lightmode') === "true");
+        if (lightmode) {
             // override css with light.
             $('body').addClass('light-mode');
             $('.panel').each(function() {
                 $(this).addClass('light-mode')});
             $('.thumb').each(function() {
                 $(this).addClass('light-mode')});
+        } else {
+            // restore original css.
+            $('body').removeClass('light-mode');
+            $('.panel').each(function() {
+                $(this).removeClass('light-mode')});
+            $('.thumb').each(function() {
+                $(this).removeClass('light-mode')});
         };
         return this;
     };
