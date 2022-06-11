@@ -35,7 +35,18 @@
                 $(this).removeClass('light-mode')});
         };
         return this;
-    };
+   };
+
+   $.fn.toggleMenu = function() {
+      $('.nav-item').each(function(){
+          if ($(this).hasClass('hidden-nav-item')) {
+              $(this).removeClass('hidden-nav-item');
+          } else {
+              $(this).addClass('hidden-nav-item');
+          };
+      });
+      return this;
+   };
 
     $(function() {
 
@@ -103,6 +114,31 @@
                         });
             });
 
+        // Toggle menu panels.
+            var $toggles_menu = $('.toggle-menu');
+            $toggles_menu.each(function() {
+                var $this = $(this);
+                $this
+                    .removeAttr('href')
+                    .css('cursor', 'pointer')
+                    .on('click', function(event) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        $.fn.toggleMenu();
+                        });
+            });
+
+        // Toggle menu panel items.
+            var $toggles_menu = $('.nav-item');
+            $toggles_menu.each(function() {
+                var $this = $(this);
+                $this
+                    .removeAttr('href')
+                    .css('cursor', 'pointer')
+                    .on('click', function(event) {
+                        $.fn.toggleMenu();
+                        });
+            });
         // Panels.
             var $panels = $('.panel');
 

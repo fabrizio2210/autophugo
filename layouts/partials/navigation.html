@@ -1,10 +1,17 @@
 	<nav>
 		<ul>
                 {{- if .Site.Params.toggle_nightmode }}
-                        <li><a href="nightmode" class="icon fa-adjust toggle-nightmode"></a></li>
+                        <li class="nav-li" ><a href="nightmode" class="icon fa-adjust toggle-nightmode"></a></li>
+                {{- end }}
+                {{- with $.Params.sections }}
+                        <li class="nav-li" ><a href="appearmenu" class="icon toggle-menu"><i class="fa fa-bars"></i> </a>
+			{{ range $.Params.sections }}
+				<li class="nav-li nav-item hidden-nav-item" ><a href="#{{ .id }}" class="icon">{{ .name }}</a></li>
+			{{ end }}
+				<li class="nav-li nav-item hidden-nav-item" ><a href="#hfooter" class="icon">{{ $.Site.Params.footer.paragraph.headline }}</a></li>
                 {{- end }}
 		{{ range .Site.Params.header.links }}
-			<li><a href="{{ .url }}" class="icon {{ .icon }}">{{ .name }}</a></li>
+			<li class="nav-li" ><a href="{{ .url }}" class="icon {{ .icon }}">{{ .name }}</a></li>
 		{{ end }}
 		</ul>
 	</nav>

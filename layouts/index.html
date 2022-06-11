@@ -1,0 +1,79 @@
+{{ define "main" }}
+    {{- $thumb_width := default 480 ($.Param "thumb_width") }}
+    {{- $thumb_quality := default 50 ($.Param "thumb_quality") }}
+    {{- $thumb_size := printf "%dx q%d" $thumb_width $thumb_quality }}
+    <main aria-role="main">
+      <header class="homepage-header">
+        <h1>{{.Title}}</h1>
+        {{ with .Params.subtitle }}
+        <span class="subtitle">{{.}}</span>
+        {{ end }}
+      </header>
+      <div class="homepage-content">
+        <div class="about-me">
+            <section class="about-me">
+        {{- with $.Params.picprofile }}
+                <img loading="lazy" class="homepicprofile" src={{ . }} />
+        {{- end }}
+                <div class="about-me-text">
+                    {{- .Content}}
+                </div>
+            </section>
+        </div>
+      </div>
+      <div class="homepage-sections" >
+        {{ range $i,$s := $.Params.sections }}
+            <div id="{{ $s.id }}" class="homesection{{- if not (modBool $i 2)}} odd{{else}} even{{end}}">
+                {{- $image := resources.Get $s.imgpath }}
+                {{- if not $image }}
+                    {{- errorf (printf "When processing '%s', no thumbnail image found for %s in %s" $.Page.File.Path $s.name $s.imgpath) }}
+                {{- else }}
+                    {{- $thumb := $image.Resize $thumb_size }}
+                <a href={{ $s.url }} ><img loading="lazy" class="sectionpic" src={{ $thumb.RelPermalink }} /><h2>{{ $s.name }}</h2></a>
+                {{- end }}
+            </div>
+        {{ end }}
+      </div>
+      <div id="hfooter" class="contacts">
+          <div>
+              <section>
+                  <h2>{{ with .Site.Params.footer.paragraph.headline }}{{ . | markdownify }}{{ end }}</h2>
+                  <p>{{ with .Site.Params.footer.paragraph.text }}{{ . | markdownify }}{{ end }}</p>
+              </section>
+              <section>
+                  <h2>{{ with .Site.Params.footer.social.headline }}{{ . | markdownify }}{{ end }}</h2>
+                  <ul class="icons">
+                  {{ range .Site.Params.footer.social.links }}
+                      <li><a href="{{ .url }}" class="icon {{ .icon }}"><span class="label">{{ .label }}</span></a></li>
+                  {{ end }}
+                  </ul>
+              </section>
+              <p class="copyright">
+                  &copy; {{ with .Site.Params.footer.copyright.name }}{{ . | markdownify }}{{ end }}. Code generated with <a href="https://gohugo.io/">Hugo</a>, theme based on <a href="https://github.com/kc0bfv/autophugo/">AutoPhugo</a>.
+              </p>
+          </div>
+          {{ if not .Site.Params.footer.contact.hide }}
+              <div>
+                  <section>
+                      <h2>{{ with .Site.Params.footer.contact.headline }}{{ . | markdownify }}{{ end }}</h2>
+                      <form method="post" action="//formspree.io/{{ with .Site.Params.footer.contact.realEmail }}{{.}}{{ end }}" novalidate>
+                          <div class="field half first">
+                              <input type="text" name="name" required data-validation-required-message="{{ with .Site.Params.footer.contact.name.warning }}{{ . | markdownify}}{{ end }}" id="name" placeholder="{{ with .Site.Params.footer.contact.name.text }}{{ .  | markdownify }}{{ end }}" />
+                          </div>
+                          <div class="field half">
+                              <input type="email" name="email" required data-validation-required-message="{{ with .Site.Params.footer.contact.email.warning }}{{ . | markdownify }}{{ end }}" id="email" placeholder="{{ with .Site.Params.footer.contact.email.text }}{{ . | markdownify }}{{ end }}" />
+                          </div>
+                          <div class="field">
+                              <textarea name="message" required data-validation-required-message="{{ with .Site.Params.footer.contact.message.warning }}{{ . | markdownify }}{{ end }}" id="message" rows="4" placeholder="{{ with .Site.Params.footer.contact.message.text }}{{ . | markdownify }}{{ end }}"></textarea>
+                          </div>
+                          <ul class="actions">
+                              <li><input type="submit" value="{{ .Site.Params.footer.contact.buttonText }}" class="special" /></li>
+                              <li><input type="reset" value="{{ .Site.Params.footer.contact.resetText }}" /></li>
+                          </ul>
+                      </form>
+                  </section>
+              </div>
+          {{ end }}
+      </div>
+    </main>
+{{ end }}
