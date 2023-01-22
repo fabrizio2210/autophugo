@@ -1,4 +1,9 @@
 <div id="main">
+    {{- if .Content }}
+    <div class="top-description">
+    {{- .Content }}
+    </div>
+    {{- end }}
     <div class="flexrow">
 
     {{- /* Things in site config */}}
