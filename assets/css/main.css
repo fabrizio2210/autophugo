@@ -461,6 +461,7 @@ div.about-me {
 #footer .copyright { color: #505051; font-size: 0.9em; }
 #footer .copyright a { color: inherit; }
 
+#hfooter div{ padding: 20px;}
 
 /* Magnific Popup Lightbox */
 .mfp-container a, .mfp-container button, .mfp-container .nav-left, .mfp-container .nav-right { transition: color 0.2s ease-in-out, opacity 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out; text-decoration: none; }
