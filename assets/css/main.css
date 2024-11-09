@@ -22,19 +22,6 @@ body { -webkit-text-size-adjust: none; }
 
 /* LightMode */
 :root{
-  --bgk-body: #242629;
-  --a-color: #ffffff;
-  --a-hover-color: #ffffff;
-  --bkg-panel-color: rgba(36, 38, 41, 0.975);
-  --bkg-active-a-color: #242629;
-  --bkg-header-color: #1f2224;
-  --header-color: #a0a0a1;
-  --strong-color: #ffffff;
-  --h-color: #ffffff;
-  --thumb-gradient5-color: rgba(10,17,25,0.35);
-  --thumb-gradient35-color: rgba(10,17,25,0);
-}
-.light-mode {
   color: black;
   background-color: white;
   --bgk-body: white;
@@ -48,6 +35,19 @@ body { -webkit-text-size-adjust: none; }
   --h-color: black;
   --thumb-gradient5-color: rgba(255,255,255,0.75);
   --thumb-gradient35-color: rgba(255,255,255,0.25);
+}
+.dark-mode{
+  --bgk-body: #242629;
+  --a-color: #ffffff;
+  --a-hover-color: #ffffff;
+  --bkg-panel-color: rgba(36, 38, 41, 0.975);
+  --bkg-active-a-color: #242629;
+  --bkg-header-color: #1f2224;
+  --header-color: #a0a0a1;
+  --strong-color: #ffffff;
+  --h-color: #ffffff;
+  --thumb-gradient5-color: rgba(10,17,25,0.35);
+  --thumb-gradient35-color: rgba(10,17,25,0);
 }
 
 /* Box Model */
