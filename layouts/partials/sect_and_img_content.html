@@ -43,11 +43,13 @@
 
         {{- /* If no albumthumb is set, get the first image*/}}
         {{- if or (not (isset .Params "albumthumb")) (eq .Params.albumthumb "") }}
-            {{- $imgglob := printf "%s" (path.Join .File.Dir "**/[!.]*") }}
-            {{- $imgglob2 := printf "%s" (path.Join .File.Dir "[!.]*") }}
-            {{- $imageresources := where (resources.Match $imgglob) "ResourceType" "image" }}
-            {{- $imageresources = $imageresources | append (where (resources.Match $imgglob2) "ResourceType" "image") }}
-            {{- $.Scratch.Set "image" (index $imageresources 0) }}
+            {{ with .File }}
+              {{- $imgglob := printf "%s" (path.Join .Dir "**/[!.]*") }}
+              {{- $imgglob2 := printf "%s" (path.Join .Dir "[!.]*") }}
+              {{- $imageresources := where (resources.Match $imgglob) "ResourceType" "image" }}
+              {{- $imageresources = $imageresources | append (where (resources.Match $imgglob2) "ResourceType" "image") }}
+              {{- $.Scratch.Set "image" (index $imageresources 0) }}
+            {{ end }}
         {{- end }}
 
         {{- /* Otherwise get the albumthumb*/}}
@@ -71,7 +73,10 @@
     {{- $sections := $.Scratch.Get "sections" }}
 
     {{- /* Get and reorder the list of images */}}
-    {{- $imgglob := printf "%s" (path.Join .File.Dir "[!.]*") }}
+    {{- $imgglob := "unmatchable" }}
+    {{ with .File }}
+      {{- $imgglob = printf "%s" (path.Join .Dir "[!.]*") }}
+    {{ end }}
     {{- $imageresources := where (resources.Match $imgglob) "ResourceType" "image" }}
     {{- $TODO_DELETE_images := $imageresources }}
 
